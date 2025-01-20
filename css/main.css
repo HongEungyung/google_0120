@@ -1,0 +1,149 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+ul,
+li {
+  list-style: none;
+}
+
+/* nav */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: aqua;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+nav > a:hover {
+  text-decoration: underline;
+}
+.navIcon {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#menu {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+#menu::after {
+  /* html a 에 영역이 없어서 모양을 주고 싶으면 감싸는 영역을 잡든지 a 아래에 span이라도 넣든지 해야함*/
+  /* 그게 싫어서 가상 영역을 잡은 거임 */
+  content: "";
+  display: block;
+  position: absolute;
+  top: -6px;
+  left: -7px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+#menu:hover::after {
+  opacity: 1;
+}
+#menu::before {
+  content: attr(aria-label);
+  /* attr 속성 찾는 method */
+  /* 일일이 하나하나 값을 줄 수 없으니까 */
+  /* 속성 값에는 같은 class 나 id 를 줄 수 없으니까 */
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  font-size: 11px;
+  opacity: 0;
+  white-space: nowrap;
+  /* 글자 줄바꿈 방지, 다음 줄로 못 내려가게 */
+  transition: all 0.3s;
+}
+#menu:hover::before {
+  opacity: 1;
+}
+#menu svg {
+  position: relative;
+  width: 100%;
+  /* 이미지 자체는 100% 해놓고 크기 변경은 위에 영역으로만 하자 */
+  opacity: 0.5;
+  /* 색 바꾸고 싶으면 피그마에서 변경해서 갖고 오기 */
+}
+/* 로그인 */
+#login {
+  width: 70px;
+  height: 30px;
+  color: white;
+  background-color: #4484f3;
+  border: 0;
+  border-radius: 3px;
+}
+.main-wrap {
+  margin-top: 200px;
+  text-align: center;
+}
+/* 검색바 */
+.search_bar {
+  width: 70%;
+  max-width: 560px;
+  min-width: 330px;
+  margin: 30px auto;
+  background-color: rgb(255, 255, 255);
+  /* ↑검색 바의 전체 사이즈 될 거임 */
+  border: 1px solid #ccc;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 25px;
+}
+.search_bar i {
+}
+.search_bar input {
+  width: 60%;
+  padding: 5px;
+  border: 0;
+  /* 호버랑 상관없이 기존에 걍 있는 박스 테두리 */
+  outline: none;
+  /* input hover 했을 때 생기는 박스 테두리 */
+  /* 원래 장애인들을 위해서 필요한거지만 디자인을 위해 없앰 */
+}
+.search-icon {
+  width: 10%;
+  min-width: 48px;
+  display: flex;
+  gap: 10px;
+  /* 1. 아이콘 전체에 너비 값을 준다 */
+}
+.search-icon a{
+    width: calc(100% / 2);
+    /* 2. a 를 똑같이 2개로 나눈다 */
+}
+.search-icon img{
+    width: 100%;
+    /* 3. 이미지를 a 사이즈에 따라가게 한다. */
+}
+
+/* 반응형 */
+@media screen and (max-width:390px) {
+    .search_bar{
+        padding: 5px 15px;
+    }
+}
